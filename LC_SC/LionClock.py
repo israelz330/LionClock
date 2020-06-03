@@ -27,28 +27,27 @@ import serial
 import time
 import datetime
 
-checkSerial = False
+checkSerial = True
 
-def openSerial():
-    try:
-        port_usb0 = serial.Serial(
-            # usar port = '/dev/ttyUSB0 en linux
-            port = 'COM1',
-            baudrate=9600,
-            parity=serial.PARITY_NONE,
-            stopbits = serial.STOPBITS_ONE,
-            bytesize = serial.EIGHTBITS
-            )
+try:
+    port_usb0 = serial.Serial(
+    # usar port = '/dev/ttyUSB0 en linux
+    port = '/dev/ttyUSB0',
+    # port = 'COM1',
+    baudrate=9600,
+    parity=serial.PARITY_NONE,
+    stopbits = serial.STOPBITS_ONE,
+    bytesize = serial.EIGHTBITS
+    )
 
-        checkSerial = True
-        print("\033[1;32;40mAdaptador serial hacia RedLion OK")
-        print("\033[1;37;40m")
-    except:
-        print("\033[1;31;40mAdaptador serial hacia RedLion no conectado, primero conecta el cable y luego reinicia la Raspberry. Para reiniciar presiona Ctrl+Alt++Supr")
-        print("\033[1;37;40m")
+    checkSerial = True
+    print("\033[1;32;40mAdaptador serial hacia RedLion OK")
+    print("\033[1;37;40m")
+except:
+    print("\033[1;31;40mAdaptador serial hacia RedLion no conectado, primero conecta el cable y luego reinicia la Raspberry. Para reiniciar presiona Ctrl+Alt++Supr")
+    print("\033[1;37;40m")
 
 def main():
-    openSerial()
     while checkSerial:
         FechaActual = datetime.datetime.now()
         Horas = FechaActual.strftime("%H")
@@ -56,7 +55,7 @@ def main():
         Segundos = FechaActual.strftime("%S")
         HoraCompletaString = 'VA%s.%s.%s*' % (Horas, Minutos, Segundos)
         HoraCompletaBytes = bytes(HoraCompletaString.encode())
-        print(HoraCompletaString)
+        print('%s:%s:%s' % (Horas, Minutos, Segundos))
         port_usb0.write(HoraCompletaBytes)
         time.sleep(.2)
 
