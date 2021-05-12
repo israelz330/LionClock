@@ -20,7 +20,7 @@
 #IP Dinámica: Actualmente con: 169.254.87.163
 #Detectar puerto tty: pi$: dmesg | grep tty
 #Enlistar puertos: python -m serial.tools.list_ports
-#Autorun: sudo nano home/pi/.bashrc -> python3 Reloj353.py
+#Autorun: sudo nano home/pi/.bashrc -> python3 ....py
 #****************************************************************
 
 import serial

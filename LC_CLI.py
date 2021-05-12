@@ -1,7 +1,6 @@
 """
-OUTOKUMPU MEXINOX 2020
-*ISRAEL ZAPATA
-
+* 2020
+* ISRAEL ZAPATA
 """
 
 from LC_SC.LionClock import main
